@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="3dp"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <!--image view for our course-->
+        <ImageView
+            android:id="@+id/idIVItem"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/todo2"
+            android:scaleType="centerCrop"
+            tools:ignore="ImageContrastCheck" />
+
+        <!--text view for course name-->
+        <TextView
+            android:id="@+id/idTVItemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idIVItem"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toStartOf="@id/idTVItemPrice"
+            android:padding="4dp"
+            android:text="@string/course_name2"
+            android:textColor="@color/purple_200"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!--text view for course price-->
+        <TextView
+            android:id="@+id/idTVItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idIVItem"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/price2"
+            android:textColor="@color/purple_200"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
