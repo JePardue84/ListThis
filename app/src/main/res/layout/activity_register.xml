@@ -147,7 +147,7 @@
         android:textColor="@color/black" />
 
     <!--text view for displaying a text on
-        clicking we will open a login page-->
+        clicking will open a login page-->
     <TextView
         android:id="@+id/idTVLoginUser"
         android:layout_width="match_parent"

@@ -10,7 +10,7 @@
     tools:context=".MainActivity"
     >
 
-    <!--recycler view for our data-->
+    <!--recycler view for data-->
 
     <!--progress bar for loading indicator-->
     <androidx.recyclerview.widget.RecyclerView
