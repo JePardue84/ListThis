@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // initializing all our variables.
+        // initializing all variables.
         itemRV = findViewById(R.id.idRVItems);
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
         addItemFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // opening a new activity for adding a course.
+                // opening a new activity for adding a item.
                 Intent i = new Intent(MainActivity.this, AddItemActivity.class);
                 startActivity(i);
             }
@@ -81,24 +81,24 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
     }
 
     private void getItems() {
-        // on below line clearing our list.
+        // on below line clearing list.
         itemRVModalArrayList.clear();
-        // on below line we are calling add child event listener method to read the data.
+        // on below line calling add child event listener method to read the data.
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                // on below line we are hiding our progress bar.
+                // on below line we are hiding progress bar.
                 loadingPB.setVisibility(View.GONE);
-                // adding snapshot to our array list on below line.
+                // adding snapshot to array list on below line.
                 itemRVModalArrayList.add(snapshot.getValue(ItemRVModal.class));
-                // notifying our adapter that data has changed.
+                // notifying adapter that data has changed.
                 itemRVAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 // this method is called when new child is added
-                // we are notifying our adapter and making progress bar
+                // notifying adapter and making progress bar
                 // visibility as gone.
                 loadingPB.setVisibility(View.GONE);
                 itemRVAdapter.notifyDataSetChanged();
@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
             case R.id.idLogOut:
                 // displaying a toast message on user logged out inside on click.
                 Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
-                // on below line we are signing out our user.
+                // on below line signing out user.
                 mAuth.signOut();
-                // on below line we are opening our login activity.
+                // on below line opening login activity.
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
                 this.finish();
@@ -154,33 +154,33 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // on below line we are inflating our menu
-        // file for displaying our menu options.
+        // on below line inflating menu
+        // file for displaying menu options.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     private void displayBottomSheet(ItemRVModal modal) {
-        // on below line we are creating our bottom sheet dialog.
+        // on below line creating bottom sheet dialog.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
-        // on below line we are inflating our layout file for our bottom sheet.
+        // on below line inflating layout file for bottom sheet.
         View layout = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, homeRL);
         // setting content view for bottom sheet on below line.
         bottomSheetTeachersDialog.setContentView(layout);
-        // on below line we are setting a cancelable
+        // on below line setting a cancelable
         bottomSheetTeachersDialog.setCancelable(false);
         bottomSheetTeachersDialog.setCanceledOnTouchOutside(true);
-        // calling a method to display our bottom sheet.
+        // calling a method to display bottom sheet.
         bottomSheetTeachersDialog.show();
-        // on below line we are creating variables for
-        // our text view and image view inside bottom sheet
+        // on below line creating variables
+        // text view and image view inside bottom sheet
         // and initializing them with their ids.
         TextView itemNameTV = layout.findViewById(R.id.idTVItemName);
         TextView itemDescTV = layout.findViewById(R.id.idTVItemDesc);
         TextView suitedForTV = layout.findViewById(R.id.idTVSuitedFor);
         TextView priceTV = layout.findViewById(R.id.idTVItemPrice);
         ImageView itemIV = layout.findViewById(R.id.idIVItem);
-        // on below line we are setting data to different views on below line.
+        // on below line setting data to different views on below line.
         itemNameTV.setText(modal.getItemName());
         itemDescTV.setText(modal.getItemDescription());
         suitedForTV.setText("Suited for " + modal.getBestSuitedFor());
@@ -189,22 +189,22 @@ public class MainActivity extends AppCompatActivity implements ItemRVAdapter.Ite
         Button viewBtn = layout.findViewById(R.id.idBtnVIewDetails);
         Button editBtn = layout.findViewById(R.id.idBtnEditItem);
 
-        // adding on click listener for our edit button.
+        // adding on click listener for edit button.
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // on below line we are opening the EditCourseActivity on below line.
+                // on below line opening the EditItemActivity on below line.
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
                 // on below line we are passing the item modal
                 i.putExtra("item", modal);
                 startActivity(i);
             }
         });
-        // adding click listener for our view button on below line.
+        // adding click listener for view button on below line.
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // on below line we are navigating to browser
+                // on below line navigating to browser
                 // for displaying item details from its url
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(modal.getItemLink()));
